@@ -13,7 +13,7 @@
 $ yarn global add @nestjs/cli
 ```
 
-### Next.jsプロジェクトの作成
+### Nest.jsプロジェクトの作成
 ``` bash
 $ nest new <project-name>
 ```
