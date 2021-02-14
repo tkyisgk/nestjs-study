@@ -1,9 +1,13 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module'
+import { LoggerMiddleware } from './logger.middleware';
+import { PhotosModule } from './photos/photos.module';
+
+import { User } from './users/users.entity';
+import { Photo } from './photos/photos.entity';
 
 @Module({
   imports: [
@@ -15,12 +19,22 @@ import { UsersModule } from './users/users.module'
       username: 'root',
       password: 'root',
       database: 'nest-test',
-      entities: [User],
+      entities: [User, Photo],
       synchronize: true, // 本番環境では使わないよう注意！
     }),
-    UsersModule
+    UsersModule,
+    PhotosModule
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('/');
+      // .forRoutes(AppController);
+      // .forRoutes({ path: '/', method: RequestMethod.GET });
+      // MEMO: app.tsに設定すると、グローバル
+  }
+}

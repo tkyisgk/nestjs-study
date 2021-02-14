@@ -35,14 +35,13 @@ $ mysql -u root -p
 ```
 
 * TypeORMで記述した、userテーブルが作成されていることが確認できる
-+-----------+--------------+------+-----+---------+----------------+
+
 | Field     | Type         | Null | Key | Default | Extra          |
-+-----------+--------------+------+-----+---------+----------------+
+|-----------|--------------|------|-----|---------|----------------|
 | id        | int(11)      | NO   | PRI | NULL    | auto_increment |
 | firstName | varchar(255) | NO   |     | NULL    |                |
 | lastName  | varchar(255) | NO   |     | NULL    |                |
 | isActive  | tinyint(4)   | NO   |     | 1       |                |
-+-----------+--------------+------+-----+---------+----------------+
 
 ### MySQLコマンドメモ
 ``` bash
@@ -64,4 +63,29 @@ $ select * from TABLE_NAME;
 # レコードを追加
 $ insert into DATABASE_NAME (COLUMN_NAME_1, COLUMN_NAME_1) values (COLUMN_VALUE_1, COLUMN_VALUE_2);
 
+```
+
+### 疎通確認
+
+* 詳細は`/src/users/users.controller.ts`に記載
+
+
+### リレーショナルの確認
+
+* TypeORMのManyToOne / OneToManyのか考え方。
+* たとえば、userとphotoというデータを考えると、userはphotoをたくさんもっている可能性があるので、OneToMany
+* 逆に、photoは撮った人という概念で考えると、ユーザーは１人しか紐づかないので、ManyToOne
+
+### PhotoとUserの紐付け
+
+``` bash
+# アクセス
+$ post: localhost:3000/photos
+
+# body
+{
+  "title": "first photo",
+  "fileName": "test.jpg",
+  "user": "1" # ユーザーIDが存在する値ではないとエラーが発生する
+}
 ```
