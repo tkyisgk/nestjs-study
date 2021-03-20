@@ -61,7 +61,7 @@ $ desc TABLE_NAME;
 $ select * from TABLE_NAME;
 
 # レコードを追加
-$ insert into DATABASE_NAME (COLUMN_NAME_1, COLUMN_NAME_1) values (COLUMN_VALUE_1, COLUMN_VALUE_2);
+$ insert into TABLE_NAME (COLUMN_NAME_1, COLUMN_NAME_1) values (COLUMN_VALUE_1, COLUMN_VALUE_2);
 
 ```
 
