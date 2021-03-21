@@ -9,6 +9,24 @@ type UserModel {
   isActive: Boolean!
 }
 
+type PhotoModel {
+  id: ID!
+  title: String!
+  fileName: String!
+}
+
 type Query {
   users: [UserModel!]!
+  user(id: ID!): UserModel!
+}
+
+type Mutation {
+  addUser(photo: AddPhotoInput!): PhotoModel!
+  removeUser(id: ID!): UserModel
+}
+
+input AddPhotoInput {
+  title: String!
+  fileName: String!
+  userId: ID!
 }

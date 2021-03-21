@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UserModule } from './modules/user.module';
+import { PhotoModule } from './modules/photo.module';
 
 @Module({
   imports: [
@@ -23,9 +22,8 @@ import { UserModule } from './modules/user.module';
       // entities: ['./models/*.model.{js, ts}'], // MEMO: TSは読めない
     }),
     UserModule,
+    PhotoModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 
 export class AppModule {}
