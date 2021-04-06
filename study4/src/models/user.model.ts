@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinTable } from 'typeorm';
 
 import { PhotoModel } from './photo.model' 
 
@@ -23,7 +23,7 @@ export class UserModel {
   @Column({ default: true })
   isActive: boolean;
 
-  // @Field()
-  // @OneToMany(type => PhotoModel, photo => photo.user)
-  // photos: PhotoModel[];
+  @Field((type) => [PhotoModel], { defaultValue: [] })
+  @OneToMany((type) => PhotoModel, photo => photo.user)
+  photos: PhotoModel[];
 }

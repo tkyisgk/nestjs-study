@@ -2,17 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PhotoModel {
+  id: ID!
+  title: String!
+  fileName: String!
+  user: [UserModel!]!
+}
+
 type UserModel {
   id: ID!
   firstName: String!
   lastName: String!
   isActive: Boolean!
-}
-
-type PhotoModel {
-  id: ID!
-  title: String!
-  fileName: String!
+  photos: [PhotoModel!]!
 }
 
 type Query {
@@ -21,8 +23,14 @@ type Query {
 }
 
 type Mutation {
-  addUser(photo: AddPhotoInput!): PhotoModel!
+  addUser(user: AddUserInput!): UserModel!
   removeUser(id: ID!): UserModel
+  addPhoto(photo: AddPhotoInput!): PhotoModel!
+}
+
+input AddUserInput {
+  firstName: String!
+  lastName: String!
 }
 
 input AddPhotoInput {

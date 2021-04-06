@@ -13,6 +13,7 @@ export class PhotoService {
   ) {}
 
   async add(obj: AddPhotoInput): Promise<PhotoModel> {
+    console.log(obj)
     return await this.photoRepository.save(obj);
   }
 }

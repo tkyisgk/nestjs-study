@@ -10,7 +10,7 @@ export class PhotoResolver {
   constructor(@Inject(PhotoService) private photoService: PhotoService) {}
 
   @Mutation((returns) => PhotoModel)
-  async addUser(@Args('photo') photo: AddPhotoInput) {
+  async addPhoto(@Args('photo') photo: AddPhotoInput) {
     return await this.photoService.add(photo);
   }
 }

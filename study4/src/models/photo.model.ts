@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 import { UserModel } from './user.model' 
 
@@ -19,7 +19,7 @@ export class PhotoModel {
   @Column()
   fileName: string;
 
-  // @Field()
-  // @ManyToOne(() => UserModel, user => user.photos)
-  // user: UserModel;
+  @Field((type) => [UserModel], { defaultValue: [] })
+  @ManyToOne((type) => UserModel, user => user.photos)
+  user: UserModel;
 }
