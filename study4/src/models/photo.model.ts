@@ -19,7 +19,7 @@ export class PhotoModel {
   @Column()
   fileName: string;
 
-  @Field((type) => [UserModel], { defaultValue: [] })
+  @Field((type) => UserModel, { nullable: false })
   @ManyToOne((type) => UserModel, user => user.photos)
   user: UserModel;
 }

@@ -20,7 +20,7 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<UserModel> {
-    return await this.usersRepository.findOne(id);
+    return await this.usersRepository.findOne(id)
   }
 
   async add(obj: AddUserInput): Promise<UserModel> {

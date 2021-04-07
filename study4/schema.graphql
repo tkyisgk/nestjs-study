@@ -6,7 +6,7 @@ type PhotoModel {
   id: ID!
   title: String!
   fileName: String!
-  user: [UserModel!]!
+  user: UserModel!
 }
 
 type UserModel {
@@ -20,6 +20,7 @@ type UserModel {
 type Query {
   users: [UserModel!]!
   user(id: ID!): UserModel!
+  photos: [PhotoModel!]!
 }
 
 type Mutation {

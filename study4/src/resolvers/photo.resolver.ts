@@ -9,8 +9,13 @@ import { AddPhotoInput } from '../dto/photo.dto'
 export class PhotoResolver {
   constructor(@Inject(PhotoService) private photoService: PhotoService) {}
 
+  @Query((returns) => [PhotoModel])
+  async photos() {
+    return await this.photoService.findAll();
+  }
+
   @Mutation((returns) => PhotoModel)
-  async addPhoto(@Args('photo') photo: AddPhotoInput) {
-    return await this.photoService.add(photo);
+  addPhoto(@Args('photo') photo: AddPhotoInput) {
+    return this.photoService.add(photo);
   }
 }

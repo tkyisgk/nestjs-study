@@ -82,3 +82,32 @@ mutation($user: AddUserInput!) {
 ```
 
 ### リレーションの追加
+
+* userテーブルとphotoテーブルのリレーションを作る。
+* model上にOneToMany / ManyToOneを追加する。
+* photoを登録時に、userIdを引数として、service側でfindして結合する。
+
+``` graphql
+mutation($photo: AddPhotoInput!) {
+  addPhoto(photo: $photo) {
+    id
+    title
+    fileName
+    user {
+      id
+    	firstName
+      lastName
+      isActive
+  	}
+  }
+}
+
+<!-- variables -->
+{
+  "photo": {
+    "title": "photo1",
+    "fileName": "test1.jpg",
+    "userId": 1
+  }
+}
+```
