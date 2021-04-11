@@ -21,5 +21,5 @@ export class PhotoModel {
 
   @Field((type) => UserModel, { nullable: false })
   @ManyToOne((type) => UserModel, user => user.photos)
-  user: UserModel;
+  readonly user: UserModel;
 }

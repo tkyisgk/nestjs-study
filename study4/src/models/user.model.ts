@@ -25,5 +25,5 @@ export class UserModel {
 
   @Field((type) => [PhotoModel], { defaultValue: [] })
   @OneToMany((type) => PhotoModel, photo => photo.user)
-  photos: PhotoModel[];
+  readonly photos: PhotoModel[];
 }
